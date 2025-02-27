@@ -17,10 +17,18 @@ class ImageStitcher:
         return [imutils.resize(img, width=600, height=600) for img in images]
 
     def stitch_images(self):
+        # Start with the last two images
         result, matched_points = self.panorama.image_stitch([self.images[-2], self.images[-1]], match_status=True)
         
+        if result is None:
+            raise RuntimeError("Initial stitching failed. Check the input images.")
+
+        # Iterate over the remaining images
         for i in range(len(self.images) - 2):
             result, matched_points = self.panorama.image_stitch([self.images[len(self.images) - i - 3], result], match_status=True)
+            
+            if result is None:
+                raise RuntimeError(f"Stitching failed at image index {len(self.images) - i - 3}. Check the input images.")
         
         return result, matched_points
 
@@ -29,14 +37,20 @@ class ImageStitcher:
         cv2.imshow("Panorama", result)
         cv2.imwrite("output/matched_points.jpg", matched_points)
         cv2.imwrite("output/panorama_image.jpg", result)
+        
+        # Wait for a key press and close windows
+        print("Press any key in the image window to close and exit.")
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
 def main():
     image_pattern = input("Enter the pattern for image files (e.g., 'images/*.jpg'): ")
     stitcher = ImageStitcher(image_pattern)
-    result, matched_points = stitcher.stitch_images()
-    stitcher.display_and_save_results(result, matched_points)
+    try:
+        result, matched_points = stitcher.stitch_images()
+        stitcher.display_and_save_results(result, matched_points)
+    except RuntimeError as e:
+        print(f"Error: {e}")
 
 if __name__ == "__main__":
     main()
