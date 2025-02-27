@@ -38,9 +38,14 @@ class ImageStitcher:
         cv2.imwrite("output/matched_points.jpg", matched_points)
         cv2.imwrite("output/panorama_image.jpg", result)
         
-        # Wait for a key press and close windows
-        print("Press any key in the image window to close and exit.")
-        cv2.waitKey(0)
+        # Use a loop to wait for the window to close
+        while True:
+            # Wait for 1 ms and check if the window is closed
+            if cv2.getWindowProperty("Keypoint Matches", cv2.WND_PROP_VISIBLE) < 1 or \
+               cv2.getWindowProperty("Panorama", cv2.WND_PROP_VISIBLE) < 1:
+                break
+            cv2.waitKey(1)
+        
         cv2.destroyAllWindows()
 
 def main():

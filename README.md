@@ -11,8 +11,8 @@ This repository contains two computer vision projects implemented in Python:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Paranoid-02/VR_Assignment1_Akshay_MT2024016.git
-cd VR_Assignment1_Akshay_MT2024016
+git clone https://github.com/Akash-Upadhyay/VR_Assignment1_Akash-Upadhyay_MT2024013.git
+cd VR_Assignment1_Akash-Upadhyay_MT2024013
 ```
 
 ### 2. Set Up Virtual Environment (Recommended)
@@ -159,10 +159,10 @@ As demonstrated in the output images:
 
 ## Author
 
-AKSHAY SHARMA
-Roll No: MT2024016
+AKASH UPADHYAY
+Roll No: MT2024013
 
 ## License
 
 This project is licensed under the MIT License
->>>>>>> dc20384 (Initial commit)
+
