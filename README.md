@@ -162,7 +162,3 @@ As demonstrated in the output images:
 AKASH UPADHYAY
 Roll No: MT2024013
 
-## License
-
-This project is licensed under the MIT License
-
